@@ -14,6 +14,8 @@
             top: 0;
             bottom: 0;
             padding: 0;
+            margin: 0;
+            overflow: hidden;
         }
     </style>
     <script>
@@ -45,6 +47,8 @@
             canvas.width = document.body.clientWidth;
             canvas.height = document.body.clientHeight;
             ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             for (let j = 0; j < 1000; j++) {
                 let tmp = a.map((x, i) => i % 2 == 0 ? [x[0] + rnd(r), x[1] + rnd(r)] : [x[0], x[1]]);
                 drawStar(ctx, Math.random() * canvas.width, Math.random() * canvas.height, 10 + Math.random() * scale, tmp);
@@ -53,7 +57,8 @@
         }
 
         const drawStar = (ctx, x, y, scale, a) => {
-            let color = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+            let color = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0") + "cc";
+            console.log(color);
             ctx.fillStyle = color;
             ctx.strokeStyle = color;
             ctx.beginPath();
